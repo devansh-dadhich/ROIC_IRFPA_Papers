@@ -213,3 +213,268 @@ However, it comes at the cost of higher power and larger pixel area.
 
 So it’s a trade-off between performance and complexity.”
 ---
+
+Questions : 
+---
+Great — this is where you can really stand out. I’ll give you **realistic jury questions + crisp answers**, not textbook ones.
+
+---
+
+# 🎯 🔥 Core Concept Questions
+
+---
+
+### ❓ 1. Why do we even need ROIC? Why not directly read detector output?
+
+👉 **Answer:**
+IR detectors generate **extremely small currents (pA–nA range)**.
+These signals are:
+
+* noisy
+* high impedance
+* not directly usable
+
+ROIC is required to:
+
+* bias the detector properly
+* integrate and amplify signal
+* convert it into usable voltage/digital output
+
+---
+
+### ❓ 2. Why is detector bias stability important?
+
+👉 **Answer:**
+Detector characteristics depend strongly on bias voltage.
+If bias changes:
+
+* responsivity changes
+* nonlinearity increases
+
+So keeping **constant bias ensures linear and accurate sensing**.
+
+---
+
+### ❓ 3. What is injection efficiency and why is it important?
+
+👉 **Answer:**
+[
+\eta = \frac{I_{integrated}}{I_{photocurrent}}
+]
+
+It tells how much of detector current is actually captured.
+
+* Low η → signal loss
+* High η → better sensitivity
+
+DI suffers at low current because η drops.
+
+---
+
+### ❓ 4. Why does DI fail at low photocurrent?
+
+👉 **Answer:**
+At low current:
+
+* MOSFET input impedance increases
+* More current leaks through detector
+
+So less current reaches integration capacitor → poor sensitivity.
+
+---
+
+### ❓ 5. Why is CTIA considered best?
+
+👉 **Answer:**
+
+* Keeps detector voltage constant (virtual ground)
+* Nearly **100% injection efficiency**
+* High linearity
+
+But trade-offs:
+
+* higher power
+* larger area
+
+---
+
+# ⚙️ Circuit-Level Questions
+
+---
+
+### ❓ 6. Why common-gate configuration is used in DI?
+
+👉 **Answer:**
+Common-gate provides:
+
+* low input impedance
+* fast current transfer
+
+This helps in directly injecting photocurrent into capacitor.
+
+---
+
+### ❓ 7. Why PMOS is used instead of NMOS in DI?
+
+👉 **Answer:**
+
+* Better compatibility with detector bias levels
+* Lower 1/f noise
+* Easier integration in IRFPA process
+
+---
+
+### ❓ 8. What is virtual ground in CTIA?
+
+👉 **Answer:**
+Input node is held at constant voltage due to high-gain feedback.
+Even though current flows, voltage doesn’t change.
+
+---
+
+# 🔬 Detector + System Questions
+
+---
+
+### ❓ 9. Difference between photon and thermal detectors?
+
+👉 **Answer:**
+
+| Photon                     | Thermal                   |
+| -------------------------- | ------------------------- |
+| Generate carriers directly | Detect temperature change |
+| Fast, high sensitivity     | Slower                    |
+| Require cooling            | Operate at room temp      |
+
+Examples:
+
+* Photon → HgCdTe, InSb
+* Thermal → Bolometer
+
+---
+
+### ❓ 10. Why HgCdTe is widely used?
+
+👉 **Answer:**
+
+* Tunable bandgap → can detect SWIR to LWIR
+* High quantum efficiency
+
+---
+
+### ❓ 11. Why cooling is required in IR detectors?
+
+👉 **Answer:**
+To reduce:
+
+* dark current
+* thermal noise
+
+This improves signal-to-noise ratio.
+
+---
+
+# 🧠 System/Architecture Questions
+
+---
+
+### ❓ 12. Why hybrid architecture (detector + ROIC)?
+
+👉 **Answer:**
+
+* Detector materials ≠ CMOS compatible
+* ROIC needs CMOS
+
+So:
+👉 best detector + best electronics separately → connected via bump bonding
+
+---
+
+### ❓ 13. What are main noise sources in ROIC?
+
+👉 **Answer:**
+
+* Thermal noise
+* 1/f noise
+* Reset noise (KTC)
+
+---
+
+### ❓ 14. What is KTC noise?
+
+👉 **Answer:**
+Noise introduced during capacitor reset:
+[
+V_n = \sqrt{\frac{kT}{C}}
+]
+
+---
+
+### ❓ 15. Trade-offs in ROIC design?
+
+👉 **Answer:**
+
+* Performance vs power
+* Sensitivity vs pixel size
+* Noise vs speed
+
+---
+
+# 🔥 Smart / Analytical Questions
+
+---
+
+### ❓ 16. If you had to choose between DI and CTIA, what would you choose?
+
+👉 **Answer:**
+
+* For high-performance → CTIA
+* For low-power / compact → DI
+
+Depends on application requirements.
+
+---
+
+### ❓ 17. What drives evolution of ROIC architectures?
+
+👉 **Answer:**
+Improving:
+
+* injection efficiency
+* detector bias stability
+* noise performance
+
+---
+
+### ❓ 18. Can digital ROIC replace analog ROIC?
+
+👉 **Answer:**
+Not fully.
+Analog front-end is still required because:
+
+* signal is extremely small
+* must be conditioned before digitization
+
+---
+
+# 🎯 Final tip (VERY IMPORTANT)
+
+If you don’t know an answer:
+
+👉 Say:
+
+> “I haven’t explored that in detail yet, but based on my understanding…”
+
+Then connect it to what you know.
+
+---
+
+# 🧠 Most likely questions for YOU specifically
+
+From your PPT, expect:
+
+* DI vs CTIA difference
+* Injection efficiency
+* Why PMOS
+* Hybrid structure
+* Photon vs thermal detectors
