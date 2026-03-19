@@ -57,3 +57,159 @@ Print only essentials: Diagrams, schematics, key sections—focus on visuals for
 5. **Fusetto et al. Review**: Sections 2-4 ~10 pages (architectures, strategies).
 
 This keeps you focused—report confidently on Monday, then pivot to Verilog with solid context. If overwhelmed, simplify: One diagram per concept. Good luck!
+
+ROIC PPT Content
+---
+
+# 🎤 Slide 1 — Title
+
+*(Based on page 1 )*
+
+“Good morning, I’m Devansh.
+In this presentation, I’ll walk through the fundamentals of infrared imaging and focus on how CMOS ROIC architectures have evolved to efficiently read very small IR signals.
+This is based on my study of key papers and textbooks in this domain.”
+
+---
+
+# 🎤 Slide 2 — Infrared Radiation
+
+“Let’s start with the basics — infrared radiation.
+IR lies just beyond visible light in the electromagnetic spectrum and is primarily associated with heat.
+Any object above absolute zero emits IR radiation, and the intensity increases with temperature.
+
+Different wavelength bands like SWIR, MWIR, and LWIR are used for different applications, depending on temperature range and sensing requirements.”
+
+---
+
+# 🎤 Slide 3 — Thermal Radiation Laws
+
+“To understand IR imaging, we need some fundamental physics.
+
+Stefan–Boltzmann law tells us that emitted power increases with the fourth power of temperature, so even small temperature changes matter.
+Wien’s law tells us that hotter objects emit at shorter wavelengths.
+
+Together, these explain why different IR bands are used for different temperature ranges.
+Blackbody radiation gives us the ideal reference for emission.”
+
+---
+
+# 🎤 Slide 4 — Emission vs Reflection
+
+“In real-world scenarios, objects are not perfect emitters.
+
+Emissivity defines how efficiently an object emits radiation.
+Some objects emit strongly, like humans, while others reflect IR, like polished metals.
+
+This distinction is important because reflected IR does not represent the object’s temperature.
+
+Also, MWIR is more useful for hot targets, while LWIR is used for ambient temperature imaging.”
+
+---
+
+# 🎤 Slide 5 — IR Imaging System (Hybrid Structure)
+
+“This is the core hardware structure.
+
+Modern IR cameras use a two-chip hybrid system:
+a detector array on top and a CMOS ROIC below, connected using indium bump bonding.
+
+The detector materials like HgCdTe and InSb convert IR into electrical signals.
+HgCdTe is tunable across bands, while InSb is very sensitive in MWIR.
+
+There are also two types of detectors:
+photon detectors, which generate charge directly, and thermal detectors like bolometers, which rely on temperature change.
+
+The ROIC then processes this very weak signal.”
+
+---
+
+# 🎤 Slide 6 — ROIC Functions
+
+“This slide shows what the ROIC actually does.
+
+It starts at the pixel level, where the signal is acquired and integrated.
+Then it is sampled, multiplexed across rows and columns, and processed in the analog domain.
+
+Finally, it is converted to digital using ADC and sent out.
+
+So essentially, ROIC acts as the interface that converts raw detector signals into usable digital image data.”
+
+---
+
+# 🎤 Slide 7 — Design Parameters
+
+“Now, the design of ROIC is driven by several key parameters.
+
+Detector bias stability is critical for linearity.
+Injection efficiency determines how much signal is actually captured.
+Noise affects the minimum detectable signal.
+
+And all of this must be balanced with pixel area and power consumption.
+
+These constraints drive the evolution of different architectures.”
+
+---
+
+# 🎤 Slide 8 — Self Integration
+
+“We start with the simplest method — self-integration.
+
+Here, charge directly accumulates at the detector node without any active circuitry.
+This makes it very simple and low power.
+
+But the problem is that the detector bias changes during integration, leading to nonlinearity and high noise.
+
+So better control is needed.”
+
+---
+
+# 🎤 Slide 9 — SFD
+
+“To improve this, SFD introduces a source follower buffer.
+
+It helps in reading out the voltage without heavily loading the detector.
+
+However, the charge is still stored at the detector node, so bias variation and noise issues remain.
+
+This motivates moving the integration away from the detector.”
+
+---
+
+# 🎤 Slide 10 — DI
+
+“Direct Injection is the first major improvement.
+
+Here, photocurrent is directly injected into an integration capacitor through a common-gate transistor.
+This keeps the detector bias more stable.
+
+However, not all current is captured — injection efficiency is less than one, especially at low signal levels.
+
+So performance drops in low-light conditions.”
+
+---
+
+# 🎤 Slide 11 — GMI & BDI
+
+“To address DI limitations, improved architectures were developed.
+
+GMI uses gate modulation and current mirrors to amplify the signal before integration.
+BDI introduces feedback using an amplifier to reduce input impedance.
+
+This significantly improves injection efficiency and sensitivity.
+
+So we move from passive control to active control.”
+
+---
+
+# 🎤 Slide 12 — CTIA
+
+“CTIA is the most advanced and widely used architecture.
+
+It uses a high-gain amplifier with feedback to keep the detector node at constant voltage, also called virtual ground.
+
+This ensures nearly perfect injection efficiency and excellent linearity.
+
+However, it comes at the cost of higher power and larger pixel area.
+
+So it’s a trade-off between performance and complexity.”
+---
